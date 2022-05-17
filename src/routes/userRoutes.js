@@ -15,7 +15,13 @@ userRoutes.get('/art', async (req, res) => {
 });
 
 // POST /register - gaunam email ir password
-// hash password (bcryptjs)
+userRoutes.post('/register', async (req, res) => {
+  // const newUser = {};
+  // // hash password (bcryptjs)
+  // const hashedPass = hashPassword(plainPasword);
+  // saveToDb(newUser);
+});
+
 // issaugom duomenu bazeje users lenteleje
 
 module.exports = userRoutes;

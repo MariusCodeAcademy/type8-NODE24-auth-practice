@@ -15,6 +15,12 @@ async function getArrayFromDb(sql) {
   }
 }
 
+/**
+ * Function that executes query with params
+ * @param {string} sql - mysql query to execute with ?
+ * @param {string[]} dataToDbArr - data to pass to ?
+ * @returns Promise | Execute result
+ */
 async function executeDb(sql, dataToDbArr) {
   let conn;
   try {
@@ -30,9 +36,10 @@ async function executeDb(sql, dataToDbArr) {
 }
 
 // sukurti  getArticlesDB ji grazina visus straipsnius
+/** gets all articles */
 function getArticlesDB() {
   const sql = 'SELECT * FROM articles';
-  return getArrayFromDb(sql);
+  return executeDb(sql);
 }
 
 // exportuoti getArticlesDB
