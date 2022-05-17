@@ -1,1 +1,11 @@
-GET http://localhost:3000
+GET http://localhost:3000/art
+
+### 
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+  "email": "james@bond.com",
+  "password": "123456"
+}
