@@ -1,3 +1,6 @@
+const mysql = require('mysql2/promise');
+const { dbConfig } = require('../config');
+
 async function getArrayFromDb(sql) {
   let conn;
   try {
@@ -12,5 +15,13 @@ async function getArrayFromDb(sql) {
   }
 }
 // sukurti  getArticlesDB ji grazina visus straipsnius
+function getArticlesDB() {
+  const sql = 'SELECT * FROM articles';
+  return getArrayFromDb(sql);
+}
 
 // exportuoti getArticlesDB
+
+module.exports = {
+  getArticlesDB,
+};

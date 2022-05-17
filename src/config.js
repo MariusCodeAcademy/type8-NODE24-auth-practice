@@ -8,4 +8,11 @@ const dbConfig = {
   database: process.env.DB_DB,
 };
 
-module.exports = dbConfig;
+// console.log('dbConfig ===', dbConfig);
+
+const PORT = +process.env.SERVER_PORT || 5000;
+
+module.exports = {
+  dbConfig,
+  PORT,
+};
