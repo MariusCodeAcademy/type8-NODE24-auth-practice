@@ -46,4 +46,5 @@ function getArticlesDB() {
 
 module.exports = {
   getArticlesDB,
+  executeDb,
 };
