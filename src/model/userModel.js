@@ -19,7 +19,7 @@ async function executeDb(sql, dataToDbArr) {
   let conn;
   try {
     conn = await mysql.createConnection(dbConfig);
-    const [result] = await conn.execute(sql, dataToDBArr);
+    const [result] = await conn.execute(sql, dataToDbArr);
     return result;
   } catch (error) {
     console.log('error executeDb', error);
