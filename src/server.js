@@ -18,8 +18,6 @@ app.get('/', (req, res) => {
   res.send('Hello express');
 });
 
-const sampleRoutes = require('./routes/v1/sampleRoute');
-
-app.use('/sample', sampleRoutes);
+// app.use('/sample', sampleRoutes);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
