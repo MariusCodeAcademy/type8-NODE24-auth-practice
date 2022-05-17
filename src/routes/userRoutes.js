@@ -35,6 +35,13 @@ userRoutes.post('/register', async (req, res) => {
   }
 });
 
-// issaugom duomenu bazeje users lenteleje
+// POST /login - grazinti {success: true, token}
+// paisimit email ir password
+// paieskoti email duomentu bazeje
+// jei randam patikri slaptazodi su bcrypt
+// jei slaptazodis tinkamas,
+// grazinti {success: true}
+// sugeneruoti jwt token su userId
+// grazinam vartotojui
 
 module.exports = userRoutes;

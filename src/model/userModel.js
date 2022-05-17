@@ -42,6 +42,10 @@ function getArticlesDB() {
   return executeDb(sql);
 }
 
+function saveUserDb(email, password) {
+  const sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
+  return executeDb(sql, [email, password]);
+}
 // exportuoti getArticlesDB
 
 module.exports = {
