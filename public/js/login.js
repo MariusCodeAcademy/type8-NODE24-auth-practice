@@ -28,7 +28,7 @@ formEl.addEventListener('submit', async (event) => {
     errroEl.textContent = '';
     // issaugoti reiksme localStorage
     const token = dataInJs.token;
-    localStorage.setItem('bookUserToken', token);
+    localStorage.setItem('articleUserToken', token);
     // sukuria narsykles puslapiu istorijoje nauja irasa nunaviguodamas
     // window.location.href = 'books.html';
     // nunaviguoja, padaro kad negaletume gryzti atgal psl su back
