@@ -36,6 +36,11 @@ userRoutes.post('/register', validateUser, async (req, res) => {
     res.status(400).json('no user created');
   } catch (error) {
     console.log('POST /register ===', error);
+    if (error.code === 'ER_DUP_ENTRY') {
+      res.status(400).json('user alredy exists');
+      return;
+    }
+
     res.sendStatus(500);
   }
 });

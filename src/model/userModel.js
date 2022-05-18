@@ -29,7 +29,7 @@ async function executeDb(sql, dataToDbArr) {
     return result;
   } catch (error) {
     console.log('error executeDb', error);
-    throw new Error('error executeDb');
+    throw error;
   } finally {
     conn?.end();
   }
