@@ -35,13 +35,6 @@ async function executeDb(sql, dataToDbArr) {
   }
 }
 
-// sukurti  getArticlesDB ji grazina visus straipsnius
-/** gets all articles */
-function getArticlesDB() {
-  const sql = 'SELECT * FROM articles';
-  return executeDb(sql);
-}
-
 function saveUserDb(email, password) {
   const sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
   return executeDb(sql, [email, password]);
@@ -52,7 +45,6 @@ function findUserByEmail(email) {
 }
 
 module.exports = {
-  getArticlesDB,
   executeDb,
   findUserByEmail,
 };

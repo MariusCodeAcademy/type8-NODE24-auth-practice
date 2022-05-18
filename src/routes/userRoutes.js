@@ -1,4 +1,5 @@
 const express = require('express');
+const { validateUser } = require('../middleware');
 const {
   getArticlesDB,
   executeDb,
@@ -24,7 +25,7 @@ userRoutes.get('/art', async (req, res) => {
 });
 
 // POST /register - gaunam email ir password
-userRoutes.post('/register', async (req, res) => {
+userRoutes.post('/register', validateUser, async (req, res) => {
   const newUser = req.body;
   // hash password (bcryptjs)
   newUser.password = hashPassword(newUser.password);
@@ -44,7 +45,7 @@ userRoutes.post('/register', async (req, res) => {
 });
 
 // POST /login - grazinti {success: true, token}
-userRoutes.post('/login', async (req, res) => {
+userRoutes.post('/login', validateUser, async (req, res) => {
   const gautasEmail = req.body.email;
   const gautasSlaptazodis = req.body.password;
 
