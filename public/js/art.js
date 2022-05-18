@@ -1,6 +1,6 @@
 import { getFetch } from './modules/fetch.js';
 
-console.log('books');
+console.log('art');
 
 const articleListEl = document.getElementById('article');
 
