@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('./config');
+
 // first middlewere helper
 function showBody(req, res, next) {
   // console.log(req.method);
@@ -31,7 +32,7 @@ async function validateUser(req, res, next) {
 
 async function validateToken(req, res, next) {
   const tokenFromHeaders = req.headers.authorization?.split(' ')[1];
-  console.log('req.headers.authorization ===', req.headers.authorization);
+  // console.log('req.headers.authorization ===', req.headers.authorization);
   // nera token
   if (!tokenFromHeaders) {
     res.status(401).json({

@@ -12,7 +12,7 @@ function renderBooks(arr, dest) {
   dest.innerHTML = '';
   arr.forEach((bObj) => {
     const liEl = document.createElement('li');
-    liEl.textContent = `${bObj.title} - ${bObj.year}`;
+    liEl.textContent = `${bObj.title} - ${bObj.date}`;
     dest.append(liEl);
   });
 }

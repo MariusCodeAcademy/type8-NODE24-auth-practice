@@ -5,7 +5,6 @@ const { getArticlesDB } = require('../model/articleModel');
 const articleRoutes = express.Router();
 
 articleRoutes.get('/articles', validateToken, async (req, res) => {
-  // panaudoti getArticlesDb
   try {
     const artArr = await getArticlesDB();
     res.json(artArr);

@@ -1,10 +1,6 @@
 const express = require('express');
 const { validateUser } = require('../middleware');
-const {
-  getArticlesDB,
-  executeDb,
-  findUserByEmail,
-} = require('../model/userModel');
+const { executeDb, findUserByEmail } = require('../model/userModel');
 const {
   hashPassword,
   passWordsMatch,
@@ -68,7 +64,7 @@ userRoutes.post('/login', validateUser, async (req, res) => {
   // sugeneruoti jwt token
   const payload = { userId: foundUser.id };
   const token = generateJwtToken(payload);
-  console.log('token ===', token);
+  // console.log('token ===', token);
   res.json({ success: true, token });
 });
 
