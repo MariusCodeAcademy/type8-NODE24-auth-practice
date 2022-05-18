@@ -46,9 +46,13 @@ function saveUserDb(email, password) {
   const sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
   return executeDb(sql, [email, password]);
 }
-// exportuoti getArticlesDB
+function findUserByEmail(email) {
+  const sql = 'SELECT * FROM users WHERE email = ?';
+  return executeDb(sql, [email]);
+}
 
 module.exports = {
   getArticlesDB,
   executeDb,
+  findUserByEmail,
 };
