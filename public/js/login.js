@@ -6,7 +6,7 @@ const errroEl = document.getElementById('err');
 const emailInputEl = formEl.elements.email;
 const passwordInputEl = formEl.elements.password;
 
-const errorsArr = [];
+let errorsArr = [];
 
 function addError(message, field) {
   errorsArr.push({
@@ -31,24 +31,33 @@ function checkInput(valueToCheck, field, rulesArr) {
     if (rule.split('-')[0] === 'minLength') {
       const min = rule.split('-')[1];
       if (valueToCheck.length <= min) {
-        addError(`min length must be greater than ${min}`, field);
+        addError(`length must be greater than ${min}`, field);
       }
     }
     // rule === maxLength-X
+    if (rule.split('-')[0] === 'maxLength') {
+      const max = rule.split('-')[1];
+      if (valueToCheck.length >= max) {
+        addError(`Too long. Length must be less than ${max}`, field);
+      }
+    }
+
+    // rule ===  email tikrinam ar yra @ raide
+    // extra ar yra '.' po @ raide
   }
 }
 
 formEl.addEventListener('submit', async (event) => {
   event.preventDefault();
   console.log('js submit form');
-  clearErrors();
+
   const loginObj = {
     email: formEl.elements.email.value.trim(),
     password: formEl.elements.password.value.trim(),
   };
-
+  clearErrors();
   // TODO front end validation
-  checkInput(loginObj.email, 'email', ['required', 'minLength-4']);
+  checkInput(loginObj.email, 'email', ['required', 'minLength-4', 'email']);
   checkInput(loginObj.password, 'password', [
     'required',
     'minLength-5',
@@ -122,18 +131,11 @@ function handleError(msg) {
 }
 
 function clearErrors() {
+  errorsArr = [];
   emailInputEl.style.border = 'none';
   passwordInputEl.nextElementSibling.textContent = '';
   passwordInputEl.style.border = 'none';
   emailInputEl.nextElementSibling.textContent = '';
-}
-
-function checkInputObj(obj) {
-  for (key in obj) {
-    const value = obj[key];
-    console.log('value ===', value);
-    if (value === '') return true;
-  }
 }
 
 // const errrors = [
