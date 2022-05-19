@@ -30,11 +30,13 @@ formEl.addEventListener('submit', async (event) => {
 
   const loginObj = {
     email: formEl.elements.email.value.trim(),
+    age: formEl.elements.age.value.trim(),
     password: formEl.elements.password.value.trim(),
   };
   clearErrors();
   // TODO front end validation
   checkInput(loginObj.email, 'email', ['required', 'minLength-4', 'email']);
+  checkInput(loginObj.age, 'age', ['required', 'positive']);
   checkInput(loginObj.password, 'password', [
     'required',
     'minLength-5',
