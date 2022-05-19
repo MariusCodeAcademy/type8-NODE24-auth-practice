@@ -5,8 +5,10 @@ const BASE_URL = 'http://localhost:3000';
 
 const formEl = document.getElementById('login');
 const errroEl = document.getElementById('err');
-const emailInputEl = formEl.elements.email;
-const passwordInputEl = formEl.elements.password;
+// pasiimti visus el su klase error-msg
+// clearErrors sukti cikla
+// isvalyti el textContent
+// pries tai esanciam el nuimti clase invalid-input
 
 formEl.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -79,14 +81,9 @@ function handleError(msg) {
     // });
     // atvaizduoti individualias klaidas
     msg.forEach((eObj) => {
-      if (eObj.field === 'email') {
-        emailInputEl.style.border = '1px solid red ';
-        emailInputEl.nextElementSibling.textContent = eObj.message;
-      }
-      if (eObj.field === 'password') {
-        passwordInputEl.style.border = '1px solid red ';
-        passwordInputEl.nextElementSibling.textContent = eObj.message;
-      }
+      const elWithError = formEl.elements[eObj.field];
+      elWithError.classList.add('invalid-input');
+      elWithError.nextElementSibling.textContent = eObj.message;
     });
   }
 }
@@ -94,10 +91,8 @@ function handleError(msg) {
 function clearErrors() {
   // errorsArr = [];
   clearErrorsArr();
-  emailInputEl.style.border = 'none';
-  passwordInputEl.nextElementSibling.textContent = '';
-  passwordInputEl.style.border = 'none';
-  emailInputEl.nextElementSibling.textContent = '';
+  // nuimti invalid-input
+  // istrinti klaidu texta
 }
 
 // const errrors = [
