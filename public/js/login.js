@@ -1,3 +1,5 @@
+import { checkInput, errorsArr, clearErrorsArr } from './modules/validation.js';
+
 console.log('login here');
 const BASE_URL = 'http://localhost:3000';
 
@@ -5,47 +7,6 @@ const formEl = document.getElementById('login');
 const errroEl = document.getElementById('err');
 const emailInputEl = formEl.elements.email;
 const passwordInputEl = formEl.elements.password;
-
-let errorsArr = [];
-
-function addError(message, field) {
-  errorsArr.push({
-    message,
-    field,
-  });
-}
-
-// rules ['required', 'minLength-4']
-function checkInput(valueToCheck, field, rulesArr) {
-  // eslint-disable-next-line no-restricted-syntax
-  for (const rule of rulesArr) {
-    // rule === required
-    if (rule === 'required') {
-      if (valueToCheck === '') {
-        // pranesti apie klaida
-        addError('this field is required', field);
-        return;
-      }
-    }
-    // rule === minLength-X
-    if (rule.split('-')[0] === 'minLength') {
-      const min = rule.split('-')[1];
-      if (valueToCheck.length <= min) {
-        addError(`length must be greater than ${min}`, field);
-      }
-    }
-    // rule === maxLength-X
-    if (rule.split('-')[0] === 'maxLength') {
-      const max = rule.split('-')[1];
-      if (valueToCheck.length >= max) {
-        addError(`Too long. Length must be less than ${max}`, field);
-      }
-    }
-
-    // rule ===  email tikrinam ar yra @ raide
-    // extra ar yra '.' po @ raide
-  }
-}
 
 formEl.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -131,7 +92,8 @@ function handleError(msg) {
 }
 
 function clearErrors() {
-  errorsArr = [];
+  // errorsArr = [];
+  clearErrorsArr();
   emailInputEl.style.border = 'none';
   passwordInputEl.nextElementSibling.textContent = '';
   passwordInputEl.style.border = 'none';
