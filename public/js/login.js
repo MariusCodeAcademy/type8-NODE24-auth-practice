@@ -6,6 +6,38 @@ const errroEl = document.getElementById('err');
 const emailInputEl = formEl.elements.email;
 const passwordInputEl = formEl.elements.password;
 
+const errorsArr = [];
+
+function addError(message, field) {
+  errorsArr.push({
+    message,
+    field,
+  });
+}
+
+// rules ['required', 'minLength-4']
+function checkInput(valueToCheck, field, rulesArr) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const rule of rulesArr) {
+    // rule === required
+    if (rule === 'required') {
+      if (valueToCheck === '') {
+        // pranesti apie klaida
+        addError('this field is required', field);
+        return;
+      }
+    }
+    // rule === minLength-X
+    if (rule.split('-')[0] === 'minLength') {
+      const min = rule.split('-')[1];
+      if (valueToCheck.length <= min) {
+        addError(`min length must be greater than ${min}`, field);
+      }
+    }
+    // rule === maxLength-X
+  }
+}
+
 formEl.addEventListener('submit', async (event) => {
   event.preventDefault();
   console.log('js submit form');
@@ -16,19 +48,28 @@ formEl.addEventListener('submit', async (event) => {
   };
 
   // TODO front end validation
-  if (checkInputObj(loginObj)) {
-    console.log('checkInputObj ===');
-    const errorsArr = [];
-    // paimti loginObj ir patikrinti
-    // 1. ar reiksmes yra (ar nelygu '')
-    // jei lygu tada formuojam klaida
-    // 2.paziureti ar nera ivesties laukas netrumpesins uz 4 simbolius
-    // jei taip tai {messge: 'too short', field:'password'}
-    // handleError(errorsArr);
-    return;
-  }
+  checkInput(loginObj.email, 'email', ['required', 'minLength-4']);
+  checkInput(loginObj.password, 'password', [
+    'required',
+    'minLength-5',
+    'maxLength-10',
+  ]);
+  console.log('FE errorsArr ===', errorsArr);
+  handleError(errorsArr);
+  // if (checkInputObj(loginObj)) {
+  //   console.log('checkInputObj ===');
+  //   const errorsArr = [];
+  //   // paimti loginObj ir patikrinti
+  //   // 1. ar reiksmes yra (ar nelygu '')
+  //   // jei lygu tada formuojam klaida
+  //   // 2.paziureti ar nera ivesties laukas netrumpesins uz 4 simbolius
+  //   // jei taip tai {messge: 'too short', field:'password'}
+  //   // handleError(errorsArr);
+  //   return;
+  // }
 
   console.log('loginObj ===', loginObj);
+  return;
 
   const resp = await fetch(`${BASE_URL}/login`, {
     method: 'POST',
@@ -94,3 +135,8 @@ function checkInputObj(obj) {
     if (value === '') return true;
   }
 }
+
+// const errrors = [
+//   { message: '"email" is not allowed to be empty', field: 'email' },
+//   { message: '"password" is not allowed to be empty', field: 'password' },
+// ];
