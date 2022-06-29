@@ -5,3 +5,5 @@ DB_PORT=your data
 DB_DB=your data
 
 SERVER_PORT=your server port
+
+JWT_SECRET=your secret

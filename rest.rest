@@ -1,17 +1,17 @@
-GET http://localhost:3000/articles
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTY1Mjg2MDM1NiwiZXhwIjoxNjUyODYzOTU2fQ.1lAaLMhzdCqZEX8K57-Wf2qNI6qtCEAGAFmE6CHnws0
+GET http://localhost:5000/articles
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1NjQ4MjI4MCwiZXhwIjoxNjU2NDg1ODgwfQ.FCWwIilCx49y8X4DCqS6m_NTvb104ugMuPjTW2LmC-8
 ### 
 
-POST http://localhost:3000/register
+POST http://localhost:5000/register
 Content-Type: application/json
 
 {
-  "email": "Mikel@bond.com",
+  "email": "James@bond.com",
   "password": "123456"
 }
 ###
 
-POST http://localhost:3000/login
+POST http://localhost:5000/login
 Content-Type: application/json
 
 {
